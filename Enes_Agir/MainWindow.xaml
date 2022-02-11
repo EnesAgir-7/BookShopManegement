@@ -1,0 +1,120 @@
+﻿<Window x:Class="Enes_Agir.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Enes_Agir"
+        Loaded="Window_Loaded"
+        mc:Ignorable="d"
+        
+        Title="MainWindow" Height="575" Width="990">
+    <Window.Resources>
+        <local:Int2String x:Key="int2txt"/>
+    </Window.Resources>
+    <Grid>
+        <StackPanel Background="Aqua">
+            <TextBlock TextWrapping="Wrap" Text="Manage Book" FontSize="22" FontWeight="Bold" Width="150" Height="27"/>
+        </StackPanel>
+        <TabControl Margin="0,10,0,0">
+            <TabItem Header="Book Information" Margin="384,62,-385,-64">
+                <StackPanel Margin="380,73,170,170" Orientation="Vertical" Height="324">
+                    <TextBlock TextWrapping="Wrap"  Text="Book Information" FontSize="16" FontWeight="Bold" Width="140" Height="27"/>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel HorizontalAlignment="Left" Width="124">
+                            <TextBlock TextWrapping="Wrap" Text="Title:" FontSize="18" Width="123"/>
+                            <TextBlock TextWrapping="Wrap" Text="Author Name:" FontSize="18" Width="124"/>
+                            <TextBlock TextWrapping="Wrap" Text="Category:" FontSize="18"/>
+                            <TextBlock TextWrapping="Wrap" Text="Price: " FontSize="18"/>
+                            <TextBlock TextWrapping="Wrap" Text="Description:" FontSize="18" Width="123" />
+                        </StackPanel>
+                        <StackPanel Height="262">
+                            <TextBox x:Name="title" TextWrapping="Wrap"  Text="{Binding title}" Width="280"  FontSize="18" TextChanged="Record_Changed" />
+                            <TextBox  TextChanged="Record_Changed" x:Name="author" TextWrapping="Wrap" Text="{Binding authorname}" Width="280" FontSize="18"/>
+                            <ComboBox  SelectionChanged="Record_Changed" Text="{Binding category, Converter={StaticResource int2txt}}" x:Name="CBx_categor" Margin="0,0,140,0" Width="138"/>
+                            <TextBox  TextChanged="Record_Changed" x:Name="price" TextWrapping="Wrap" Width="106" FontSize="18" Text="{Binding price}" Margin="0,0,170,0"/>
+                            <TextBox  TextChanged="Record_Changed" Text="{Binding description}" x:Name="description" TextWrapping="Wrap" Width="275" FontSize="18" Margin="6,0" Height="153"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Seller Information" Margin="384,62,-385,-64">
+                <StackPanel Margin="380,73,235,170" Orientation="Vertical" Height="324">
+                    <TextBlock TextWrapping="Wrap"  Text="Seller Information" FontSize="16" FontWeight="Bold" Width="140" Height="27"/>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel HorizontalAlignment="Left" Width="124">
+                            <TextBlock TextWrapping="Wrap" Text="Full Name:" FontSize="18" Width="123"/>
+                            <TextBlock TextWrapping="Wrap" Text="Phone:" FontSize="18" Width="124"/>
+                            <TextBlock TextWrapping="Wrap" Text="Gender:" FontSize="18"/>
+                            <TextBlock TextWrapping="Wrap" Text="Address: " FontSize="18"/>
+                        </StackPanel>
+                        <StackPanel Height="262">
+                            <TextBox  TextChanged="Record_Changed" Name="sellername" Text="{Binding sellername}" TextWrapping="Wrap" FontSize="18" Margin="0,0,70,0" Width="150" />
+                            <TextBox  TextChanged="Record_Changed" Name="sellerphone" Text="{Binding sellerphone}" Width="150" FontSize="18" Margin="0,0,70,0"/>
+                            <ComboBox  SelectionChanged="Record_Changed" Text="{Binding gender, Converter={StaticResource int2txt}}" Margin="0,0,140,2" Name="CB_Gender" Width="77"/>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel>
+                                    <TextBlock Margin="10,0" Text="Street" FontSize="16"/>
+                                    <TextBlock Margin="10,0" Text="House number" FontSize="16"/>
+                                    <TextBlock Text="City" FontSize="16" Width="101"/>
+                                    <TextBlock Margin="10,0" Text="Zip code" FontSize="16"/>
+                                </StackPanel>
+                                <StackPanel>
+                                    <TextBox TextChanged="Record_Changed" Text="{Binding street}" Name="Street" FontSize="16" Width="100"/>
+                                    <TextBox TextChanged="Record_Changed" Text="{Binding housenumber}" Margin="0,0,0,0" Name="Housenum" FontSize="16" Width="100"/>
+                                    <TextBox TextChanged="Record_Changed" Text="{Binding city}" Name="city" FontSize="16" Width="100"/>
+                                    <TextBox TextChanged="Record_Changed" Name="zipcode" Text="{Binding zipcode}" Margin="0,0,0,0" FontSize="16" Width="100"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+            <!--<TabItem Header="Change language" Margin="384,62,-385,-64">
+                <StackPanel Margin="380,73,200,154" Orientation="Horizontal" Height="329">
+                    <TextBlock Text="Choice language"></TextBlock>
+                    <ComboBox Name="cmb" SelectionChanged="CB_SelectionChange" Text="change language" Margin="10,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120">
+                    <ComboBoxItem Content="Enfglish"/>
+                    <ComboBoxItem Content="Turkish"/>
+                </ComboBox>
+                    <Button Content="Apply" Margin="0,0,0,308" Click="Change_lang"></Button>
+                </StackPanel>
+                
+            </TabItem>-->
+        </TabControl>
+
+        <StackPanel Margin="0,63,590,00">
+            <TextBlock TextWrapping="Wrap"  Text="Book List" FontSize="16" FontWeight="Bold" Width="74" Height="27"/>
+            <StackPanel Height="25" Orientation="Horizontal" Width="307">
+                <TextBlock Text="Search by name" Margin="0,0,23,0"/>
+                <TextBox TextChanged="T_filter_TextChanged" Name="T_filter" Width="200" TextWrapping="Wrap" Height="22"/>
+
+            </StackPanel>
+            <StackPanel Height="25" Orientation="Horizontal" Width="307">
+                <TextBlock Text="Search by category" Margin="0,0,6,0"/>
+                <ComboBox Text="{Binding category, Converter={StaticResource int2txt}}" x:Name="CB_Category" Margin="0,0,0,0" SelectionChanged="CB_Category_filter" Width="131"/>
+
+            </StackPanel>
+
+            <ListBox x:Name="LBx_books" Height="337" Width="308" SelectionChanged="LBx_books_SelectionChanged">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock><Run Text="{Binding title}"/><Run Text=" "/><Run Text="{Binding author}"/><Run Text=" "/><Run Text="{Binding sellername}"/><Run Text=" "/><Run Text="{Binding quantity}"/><Run Text=" "/><Run Text="{Binding price}"/></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+
+
+        <StackPanel Orientation="Horizontal" Height="27" Margin="120,451,710,0">
+
+            <Button Content="Add" Width="60" Click="Btn_Add_Click" Name="Btn_Add"/>
+            <Button Content="Delete" Width="60" Margin="30,0,0,0" Click="Btn_delete_Click"/>
+
+        </StackPanel>
+
+    </Grid>
+</Window>
